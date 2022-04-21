@@ -5,18 +5,21 @@ import './App.css';
 function App() {
 
   const name = "กรุงเทพมหานคร"
+  // my API key จาก openweathermap 
   const apikey = "8986b7c6569d6571180b0327d6c34c0e"
+  // จาก state เก็บข้อมูลที่ดึงมาจาก API
   const [city,setCity] = useState({})
-
+  
   useEffect(()=>{
     const url =`https://api.openweathermap.org/data/2.5/weather?q=${name}&appid=${apikey}`
     fetch(url)
     .then(res=>res.json())
     .then(data=>{
-      setCity(data)
+      setCity(data) // set ค่าให้ state city
     })
   },[])
-
+  
+  // แปลง temp จาก k เป็น c
   const converttemp=(k)=>{
     return (k-273).toFixed()
   }
